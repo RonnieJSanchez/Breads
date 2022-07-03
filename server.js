@@ -1,32 +1,34 @@
-// DEPENDENCIES
-const express = require('express')
 
-// CONFIGURATION
-require('dotenv').config()
+//const { application } = require('express')
+const express = require('express')
+require ('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
+console.log(PORT)
 
-// MIDDLEWARE
-app.set('views', __dirname + '/views')
+//Middleware
+app.use(express.static('public'))
+app.set('views',__dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
-app.use(express.static('public'))
+app.use(express.urlencoded({extended:true}))
 
-// ROUTES
-app.get('/', (req, res) => {
-  res.send('Welcome to an Awesome App about Breads!')
+//Routes
+app.get('/', (req, res) =>{
+    res.send("Welcome to my app about BREAD$")
 })
-
 //Breads
-const breadsConstroller = require ('./controllers/breads_controller.js')
-app.use('/breads', breadsConstroller)
+const breadsController = require('./controllers/breads_controller.js')
+app.use('/breads', breadsController)
 
-
-// LISTEN
-app.listen(PORT, () => {
-  console.log('nomming at port', PORT);
+//404 page
+app.get('8', (req,res) =>{
+    res.send('404')
 })
 
+app.listen(PORT, () =>{
+    console.log('nomming at port', PORT)
+})
 
 // 404 Page
 app.get('*', (req, res) => {
