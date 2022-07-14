@@ -26,13 +26,17 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 app.get('/', (req, res) =>{
     res.send("Welcome to my app about BREAD$")
 })
-//Breads
+// breads
 const breadsController = require('./controllers/breads_controller.js')
 app.use('/breads', breadsController)
 
-//404 page
-app.get('8', (req,res) =>{
-    res.send('404')
+// bakers 
+const bakersController = require('./controllers/bakers_controller.js')
+app.use('/bakers', bakersController)
+
+// 404 Page
+app.get('*', (req, res) => {
+  res.send('404')
 })
 
 app.listen(PORT, () =>{
