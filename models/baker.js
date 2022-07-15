@@ -1,22 +1,31 @@
-// dependencies
-const mongoose = require('mongoose')
+
+//require mongoose
+const mongoose = require("mongoose");
+
+//creating short hand for the Schema constructor
 const { Schema } = mongoose
 
-// schema
-const bakerSchema = new Schema({
+
+//My Schema
+   const bakerSchema = new Schema({
     name: {
-        type: String,
-        required: true,
-        enum: ['Rachel', 'Monica', 'Joey', 'Chandler', 'Ross', 'Phoebe']
+        type : String,
+        required : true,
+        enum: ['Rachel', 'Monica', 'Joey', "Chandler", 'Ross', 'Phoebe'
+    ]
+        
     },
-    startDate: {
+     startDate : {
         type: Date,
-        required: true
-    },
-    bio: String 
+        required : true
+     },
+     bio : String
+     
+     
+     }
+   )
 
-})
+   //model and export
 
-// model and export
-const Baker = mongoose.model('Baker', bakerSchema)
-module.exports = Baker
+   const Baker = mongoose.model('Baker', bakerSchema)
+   module.exports = Baker
