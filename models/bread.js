@@ -5,16 +5,18 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 
-//My Schema
+//Bread Schema
    const breadSchema = new Schema({
      name: { type: String, required: true },
      hasGluten: Boolean,
-     image: { type: String, default: "http://placehold.it/500x500.png" },
+     image: { type: String, default: "https://picsum.photos/seed/picsum/200/300" },
      baker: {
        type: Schema.Types.ObjectId,
-       ref: 'Baker'
+       ref: "Baker",
      },
    });
+
+
 
 //helper methods
 breadSchema.methods.getBakedBy = function () {

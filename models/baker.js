@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 //creating short hand for the Schema constructor
 const { Schema } = mongoose
 
+const Bread = require('./bread')
 
 //My Schema
    const bakerSchema = new Schema({
@@ -22,8 +23,23 @@ const { Schema } = mongoose
      bio : String
      
      
-     }
-   )
+     }, { toJSON: { virtuals: true}})
+
+//virtuals
+bakerSchema.virtual('breads',{
+   ref: 'Bread',
+   localField:"_id",
+   foreignField: "baker"
+})
+// hooks 
+bakerSchema.post('findOneAndDelete', function() {
+   Bread.deleteMany({baker: this._conditions._id})
+      .then(deleteStatus => {
+         console.log(deleteStatus)
+      })
+})            
+
+
 
    //model and export
 
