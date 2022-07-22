@@ -1,6 +1,6 @@
 const React = require("react");
 const baker_seed = require("../models/baker_seed");
-const Default = require("./layouts/Default");
+const Default = require("./layouts/default");
 
 function Index({ breads, bakers, title }) {
   return (
